@@ -361,7 +361,7 @@ async function processOrder() {
     }
 
     let total = 0;
-    let recibo = `✨ *RECIBO DE PEDIDO - NAMASTÉ* ✨\n\n`;
+    let recibo = `✨ *COTIZACIÓN - CIDEPHU* ✨\n\n`;
     recibo += `👤 *Cliente:* ${name}\n`;
     recibo += `🆔 *Cédula:* ${id}\n`;
     recibo += `📱 *WhatsApp:* ${wa}\n`;
@@ -377,7 +377,7 @@ async function processOrder() {
 
     recibo += `--------------------------------\n`;
     recibo += `💰 *TOTAL A PAGAR: ${total}$*\n\n`;
-    recibo += `🙏 _Gracias por elegir Namasté._`;
+    recibo += `🙏 _Gracias por elegir a Cidephu._`;
 
     try {
         await navigator.clipboard.writeText(recibo);
