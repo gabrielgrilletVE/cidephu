@@ -584,12 +584,14 @@
 
             let total = 0;
             let recibo = `✨ *COTIZACIÓN - CIDEPHU* ✨\n\n👤 *Cliente:* ${n}\n🆔 *ID:* ${i}\n👤 *Vendedor:* ${v}\n--------------------------------\n`;
+            recibo += `📦 *DETALLE DEL PEDIDO:*\n`;
             cart.forEach(item => {
                 const sub = item.price * item.qty;
                 recibo += `• ${item.name} (${item.qty}x$${item.price}) = $${sub}\n`;
                 total += sub;
             });
             recibo += `--------------------------------\n💰 *TOTAL: ${total}$*`;
+            recibo += `🙏 _Gracias por elegir a Cidephu._`;
 
             await navigator.clipboard.writeText(recibo);
             alert("¡Recibo copiado! Pégalo en el WhatsApp.");
