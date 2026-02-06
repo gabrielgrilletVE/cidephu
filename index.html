@@ -591,6 +591,7 @@
                 total += sub;
             });
             recibo += `--------------------------------\n💰 *TOTAL: ${total}$*`;
+            recibo += `--------------------------------------------------------`;
             recibo += `🙏 _Gracias por elegir a Cidephu._`;
 
             await navigator.clipboard.writeText(recibo);
