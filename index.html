@@ -3,80 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CIDEPHU| Centro de Sanación y Reiki</title>
+    <title>CIDEPHU | Centro de Sanación y Reiki</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #7da192;    /* Verde Salvia Zen */
-            --accent: #d4af37;     /* Oro Elegante */
-            --bg: #fdfcf9;         /* Crema de fondo */
-            --text: #3d3d3d;       /* Gris carbón */
-            --white: #ffffff;
-            --whatsapp: #25D366;
+            --primary: #7da192;    --accent: #d4af37;    --bg: #fdfcf9;
+            --text: #3d3d3d;       --white: #ffffff;     --whatsapp: #25D366;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            scroll-behavior: smooth;
-        }
-
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; scroll-behavior: smooth; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
         /* --- NAVEGACIÓN --- */
-        header {
-            background-color: var(--white);
-            padding: 1rem 0;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+        header { background-color: var(--white); padding: 1rem 0; box-shadow: 0 2px 15px rgba(0,0,0,0.03); position: sticky; top: 0; z-index: 1000; }
+        nav { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .logo { font-size: 1.5rem; color: var(--primary); text-decoration: none; font-weight: 600; letter-spacing: 3px; }
+        .nav-links { list-style: none; display: flex; gap: 12px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text); font-size: 0.65rem; font-weight: 600; text-transform: uppercase; white-space: nowrap; }
+        .btn-cart-nav { background-color: var(--primary); color: white !important; padding: 8px 15px; border-radius: 20px; cursor: pointer; border: none; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.65rem; display: flex; align-items: center; gap: 5px; }
+        #cart-badge { background: var(--accent); color: white; padding: 1px 6px; border-radius: 10px; font-size: 0.6rem; }
 
-        nav {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
+        /* --- SECCIONES --- */
+        section { padding: 60px 20px; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .section-title { font-size: 2.2rem; color: var(--primary); margin-bottom: 5px; }
+        .section-subtitle { margin-bottom: 40px; opacity: 0.7; letter-spacing: 1px; text-transform: uppercase; font-size: 0.8rem; }
 
-        .logo {
-            font-size: 1.5rem;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            letter-spacing: 3px;
-        }
+        /* --- GRID & CARDS --- */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .card { background: var(--white); padding: 30px 25px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); transition: 0.4s; display: flex; flex-direction: column; justify-content: space-between; border-top: 3px solid transparent; text-align: left; }
+        .card:hover { transform: translateY(-5px); border-top: 3px solid var(--accent); }
+        .card-tag { font-size: 0.65rem; font-weight: bold; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; display: block; }
+        .card h3 { font-size: 1.15rem; margin-bottom: 8px; color: var(--primary); }
+        .card p { font-size: 0.8rem; color: #666; margin-bottom: 15px; line-height: 1.4; }
+        .price-tag { font-size: 1.5rem; font-weight: 600; color: var(--text); margin-bottom: 15px; display: block; }
+        .btn-buy { background: var(--primary); color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; width: 100%; }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text);
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-
-        .btn-pack-nav {
-            background-color: var(--primary);
-            color: white !important;
-            padding: 8px 18px;
-            border-radius: 20px;
-        }
+        /* --- CARRITO --- */
+        #cart-container { position: fixed; bottom: 25px; right: 25px; width: 340px; background: white; border-radius: 18px; box-shadow: 0 15px 50px rgba(0,0,0,0.15); z-index: 2000; display: none; overflow: hidden; border: 1px solid #f0f0f0; }
+        .cart-header { background: var(--primary); color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        .cart-form { padding: 15px; background: #fafafa; border-bottom: 1px solid #eee; display: grid; gap: 8px; }
+        .cart-form input { padding: 8px; border: 1px solid #ddd; border-radius: 5px; font-size: 0.8rem; outline: none; }
+        #cart-items { max-height: 180px; overflow-y: auto; padding: 15px; list-style: none; }
+        .cart-item { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 10px; border-bottom: 1px solid #f9f9f9; padding-bottom: 8px; }
+        .qty-controls { display: flex; align-items: center; gap: 5px; }
+        .btn-qty { background: #eee; border: none; width: 22px; height: 22px; border-radius: 50%; cursor: pointer; }
+        .cart-total { padding: 15px; font-weight: bold; text-align: right; font-size: 1.1rem; border-top: 1px solid #eee; }
+        .btn-whatsapp { width: 100%; padding: 18px; background: var(--whatsapp); color: white; border: none; font-weight: bold; cursor: pointer; }
 
         /* --- HERO --- */
         .hero {
@@ -92,305 +66,535 @@
             text-align: center;
         }
 
+
         .hero h1 { font-size: 3.5rem; color: var(--primary); margin-bottom: 10px; }
         .hero p { font-size: 1.1rem; max-width: 600px; font-style: italic; opacity: 0.8; }
 
-        /* --- SECCIONES --- */
-        section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; text-align: center; }
-        .section-title { font-size: 2.2rem; color: var(--primary); margin-bottom: 10px; }
-        .section-subtitle { margin-bottom: 50px; opacity: 0.7; letter-spacing: 1px; }
 
-        /* --- GRID & CARDS --- */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: var(--white);
-            padding: 35px 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-            transition: 0.4s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            border-top: 3px solid transparent;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            border-top: 3px solid var(--accent);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-        }
-
-        .card-tag { font-size: 0.65rem; font-weight: bold; color: var(--accent); text-transform: uppercase; margin-bottom: 15px; display: block; }
-        .card h3 { font-size: 1.25rem; margin-bottom: 15px; min-height: 50px; }
-        .price-tag { font-size: 1.6rem; font-weight: 600; color: var(--text); margin: 20px 0; display: block; }
-
-        .btn-buy {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            transition: 0.3s;
-        }
-
-        .btn-buy:hover { background: var(--text); }
-
-        /* --- CARRITO FLOTANTE MODERNO --- */
-        #cart-container {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 340px;
-            background: white;
-            border-radius: 18px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
-            z-index: 2000;
-            display: none;
-            overflow: hidden;
-            border: 1px solid #f0f0f0;
-        }
-
-        .cart-header { background: var(--primary); color: white; padding: 20px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
-        
-        .cart-form { padding: 20px; background: #fafafa; border-bottom: 1px solid #eee; display: grid; gap: 8px; }
-        .cart-form input { padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem; outline: none; transition: 0.3s; }
-        .cart-form input:focus { border-color: var(--primary); }
-
-        #cart-items { max-height: 180px; overflow-y: auto; padding: 20px; list-style: none; text-align: left; }
-        .cart-item { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 10px; border-bottom: 1px solid #f9f9f9; padding-bottom: 8px; }
-        .cart-total { padding: 20px; font-weight: bold; text-align: right; font-size: 1.2rem; border-top: 1px solid #eee; }
-        
-        .btn-whatsapp { width: 100%; padding: 18px; background: var(--whatsapp); color: white; border: none; font-weight: bold; cursor: pointer; font-size: 0.9rem; transition: 0.3s; }
-        .btn-whatsapp:hover { background: #128C7E; }
-
-        footer { padding: 60px 20px; text-align: center; background: #fff; border-top: 1px solid #eee; color: #bbb; font-size: 0.8rem; }
-
-        @media (max-width: 768px) { .nav-links { display: none; } .hero h1 { font-size: 2.2rem; } }
-
-/* Estilos para controles de cantidad */
-.qty-controls {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.btn-qty {
-    background: #eee;
-    border: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.2s;
-}
-.btn-qty:hover { background: var(--primary); color: white; }
-.item-info { display: flex; flex-direction: column; }
-.item-price-detail { font-size: 0.75rem; color: #888; }
+        @media (max-width: 1100px) { .nav-links { display: none; } }
     </style>
 </head>
 <body>
 
     <header>
         <nav>
-            <a href="#" class="logo">NAMASTÉ</a>
+            <a href="#" class="logo">ACADEMIA</a>
             <ul class="nav-links">
-                <li><a href="#reiki1">Reiki 1</a></li>
-                <li><a href="#reiki2">Reiki 2</a></li>
-                <li><a href="#reiki3">Reiki 3</a></li>
-                <li><a href="#pack" class="btn-pack-nav">Packs</a></li>
+                <li><a href="#reiki1">Nivel 1</a></li>
+                <li><a href="#reiki1av">Nivel 1 Avanzado</a></li>
+                <li><a href="#reiki2">Nivel 2</a></li>
+                <li><a href="#reiki3">Nivel 3</a></li>
+                <li><a href="#herramientas">Herramientas</a></li>
+                <li><a href="#pack">Packs</a></li>
+                <li><a href="#Tutorias">Tutorias</a></li>
+                <li><a href="#SocioCreativa">Socio Creativa</a></li>
+                <li><a href="#Integral Woman">Integral Woman</a></li>
+                <li><button class="btn-cart-nav" onclick="toggleCart()">🛒 Pedido <span id="cart-badge">0</span></button></li>
             </ul>
         </nav>
     </header>
 
-    <div class="hero">
+     <div class="hero">
         <h1>CIDEPHU</h1>
         <p>Tu viaje hacia la sanación integral y la expansión de consciencia.</p>
     </div>
 
+
     <section id="reiki1">
         <h2 class="section-title">Reiki Nivel 1</h2>
-        <p class="section-subtitle">EL DESPERTAR</p>
+        <p class="section-subtitle">Iniciación a la Luz</p>
         <div class="product-grid">
-            <div class="card"><span class="card-tag">Parte 1</span><h3>Introducción a la Energía Universal</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Reiki 1 - Parte 1: Intro', 10)">Agregar</button></div>
-            <div class="card"><span class="card-tag">Parte 2</span><h3>Sistema de los Chakras</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Reiki 1 - Parte 2: Chakras', 10)">Agregar</button></div>
-            <div class="card"><span class="card-tag">Parte 3</span><h3>Guía de Autotratamiento</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Reiki 1 - Parte 3: Autotratamiento', 10)">Agregar</button></div>
+            <div class="card">
+                <span class="card-tag">Parte 1</span>
+                <h3>Introducción</h3>
+                <p>Historia de Mikao Usui y conceptos básicos de la energía vital para principiantes.</p>
+                <span class="price-tag">20$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 1 - Intro - Parte 1', 20)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Parte 2</span>
+                <h3>Los Chakras</h3>
+                <p>Estudio de los 7 centros energéticos principales y cómo influyen en la salud física.</p>
+                <span class="price-tag">20$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 1 - Chakras - Parte 2', 20)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Parte 3</span>
+                <h3>Autotratamiento</h3>
+                <p>Guía paso a paso para canalizar energía hacia uno mismo para sanación diaria.</p>
+                <span class="price-tag">30$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 1 - Auto- Parte 3', 30)">Agregar</button>
+            </div>
         </div>
     </section>
 
-    <section id="reiki2" style="background-color: #f7faf9;">
+    <section id="reiki1av" style="background-color: #f7f9f8;">
+        <h2 class="section-title">Reiki Nivel 1 Avanzado</h2>
+        <p class="section-subtitle">Profundización del Canal</p>
+        <div class="product-grid">
+            <div class="card">
+                <span class="card-tag">Avanzado</span>
+                <h3>Anatomía Sutil</h3>
+                <p>No disponible.</p>
+                <span class="price-tag">0$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 1 Av - Anatomía', 0)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Avanzado</span>
+                <h3>Respiración Pránica</h3>
+                <p>No disponible.</p>
+                <span class="price-tag">0$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 1 Av - Respiración', 0)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Avanzado</span>
+                <h3>Protección Áurica</h3>
+                <p>No disponible.</p>
+                <span class="price-tag">0$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 1 Av - Protección', 0)">Agregar</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="reiki2">
         <h2 class="section-title">Reiki Nivel 2</h2>
-        <p class="section-subtitle">LA TRANSFORMACIÓN</p>
+        <p class="section-subtitle">Transformación Mental y Emocional</p>
         <div class="product-grid">
-            <div class="card"><span class="card-tag">Parte 1</span><h3>Los Tres Símbolos</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Reiki 2 - Parte 1: Símbolos', 10)">Agregar</button></div>
-            <div class="card"><span class="card-tag">Parte 2</span><h3>Sanación Mental y Distancia</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Reiki 2 - Parte 2: Mental', 10)">Agregar</button></div>
-            <div class="card"><span class="card-tag">Parte 3</span><h3>Evolución del Terapeuta</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Reiki 2 - Parte 3: Terapeuta', 10)">Agregar</button></div>
-            <div class="card"><span class="card-tag">Parte 4</span><h3>Símbolo de Distancia y Tiempo</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Reiki 2 - Parte 4: Tiempo', 10)">Agregar</button></div>
-            <div class="card"><span class="card-tag">Parte 5</span><h3>Tratamientos Directos</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Reiki 2 - Parte 5: Directos', 10)">Agregar</button></div>
-            <div class="card"><span class="card-tag">Parte 6</span><h3>Manifestación (MAFAES)</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Reiki 2 - Parte 6: MAFAES', 10)">Agregar</button></div>
-            <div class="card"><span class="card-tag">Parte 7</span><h3>Reiki: Hora de la Muerte</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Reiki 2 - Parte 7: Transición', 10)">Agregar</button></div>
+            <div class="card">
+                <span class="card-tag">Parte 1</span>
+                <h3>Los Tres Símbolos</h3>
+                <p>Uso de los símbolos sagrados para potenciar, armonizar y sanar el plano mental.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 2 - Símbolos-Parte 1', 10)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Parte 2</span>
+                <h3>Reiki: Sanación mental y a distancia</h3>
+                <p>Métodos para enviar energía a personas, lugares o situaciones sin importar el espacio.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 2 - Distancia-Parte 2', 10)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Parte 3</span>
+                <h3>Símbolo del sei he ki</h3>
+                <p>Técnica para sanar traumas pasados y enviar energía a proyectos futuros.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 2 -sei he ki-Parte 3', 10)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Parte 4</span>
+                <h3>Símbolo  Hon sha ze cho nen</h3>
+                <p>Uso de Reiki para materializar metas y armonizar la abundancia en tu vida.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 2-Honshazechonen-Parte 4', 10)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Parte 5</span>
+                <h3>Tratamientos Directos</h3>
+                <p>Uso de Reiki para materializar metas y armonizar la abundancia en tu vida.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 2 - Tratamientos-Parte 5', 10)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Parte 6</span>
+                <h3>MAFAES</h3>
+                <p>Uso de Reiki para materializar metas y armonizar la abundancia en tu vida.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 2 - MAFAES-Parte 6', 10)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Parte 7</span>
+                <h3>Reiki: Hora de la Muerte</h3>
+                <p>Uso de Reiki para materializar metas y armonizar la abundancia en tu vida.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 2 - Reiki y Muerte-Parte 7', 10)">Agregar</button>
+            </div>
         </div>
     </section>
 
-    <section id="reiki3">
+    <section id="reiki3" style="background-color: #f7faf9;">
         <h2 class="section-title">Reiki Nivel 3</h2>
-        <p class="section-subtitle">LA REALIZACIÓN</p>
+        <p class="section-subtitle">La Realización del Maestro</p>
         <div class="product-grid">
-            <div class="card"><span class="card-tag">Parte 1</span><h3>Day Ko Mio: Simbología</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Reiki 3 - Parte 1: Simbología', 10)">Agregar</button></div>
-            <div class="card"><span class="card-tag">Parte 2</span><h3>Meditación 3er Grado</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Reiki 3 - Parte 2: Meditación', 10)">Agregar</button></div>
-            <div class="card"><span class="card-tag">Parte 3</span><h3>Parrilla de Cristales</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Reiki 3 - Parte 3: Cristales', 10)">Agregar</button></div>
-            <div class="card"><span class="card-tag">Parte 4</span><h3>Anthakaranas</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Reiki 3 - Parte 4: Anthakaranas', 10)">Agregar</button></div>
-            <div class="card"><span class="card-tag">Parte 5</span><h3>Punto Hui Yin</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Reiki 3 - Parte 5: Hui Yin', 10)">Agregar</button></div>
-            <div class="card"><span class="card-tag">Parte 6</span><h3>Cirugía Astral</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Reiki 3 - Parte 6: Cirugía', 10)">Agregar</button></div>
-            <div class="card"><span class="card-tag">Parte 7</span><h3>Tratamientos de Nivel 3</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Reiki 3 - Parte 7: Tratamientos', 10)">Agregar</button></div>
+            <div class="card">
+                <span class="card-tag">Parte 1</span>
+                <h3>Day Ko Mio: Simbología</h3>
+                <p>El símbolo de la luz espiritual que actúa directamente sobre el alma del receptor.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 3 - Parte 1: Simbología', 10)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Parte 2</span>
+                <h3>Meditación 3er Grado</h3>
+                <p>Creación de mandalas con cristales para enviar Reiki continuo las 24 horas.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 3 - Parte 2: Meditación', 10)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Parte 3</span>
+                <h3>Parrilla de Cristales</h3>
+                <p>Técnica para extraer bloqueos energéticos profundos y densos en el cuerpo sutil.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 3- Parte 3: - Parrilla', 10)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Parte 4</span>
+                <h3>Anthakaranas</h3>
+                <p>Técnica para extraer bloqueos energéticos profundos y densos en el cuerpo sutil.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 3- Parte 4 - Antha', 10)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Parte 5</span>
+                <h3>Punto Hui Yin</h3>
+                <p>Técnica para extraer bloqueos energéticos profundos y densos en el cuerpo sutil.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 3- Parte 5 - Hui Yin', 10)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Parte 6</span>
+                <h3>Cirugía Astral</h3>
+                <p>Técnica para extraer bloqueos energéticos profundos y densos en el cuerpo sutil.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 3-Parte 6- Cirugía Astral', 10)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Parte 7</span>
+                <h3>Tratamientos</h3>
+                <p>Técnica para extraer bloqueos energéticos profundos y densos en el cuerpo sutil.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Reiki 3-Parte 7- Tratamientos', 10)">Agregar</button>
+            </div>
+
         </div>
     </section>
 
-    <section id="pack" style="background-color: #f0f4f2;">
-        <h2 class="section-title">Packs Especiales</h2>
+    <section id="herramientas">
+        <h2 class="section-title">Herramientas Terapéuticas</h2>
+        <p class="section-subtitle">Complementos Sagrados</p>
         <div class="product-grid">
-            <div class="card"><span class="card-tag">Pack 1 Reiki 1</span><h3>Guía Gassho</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Pack 1 Reiki 1', 10)">Agregar</button></div>
-            <div class="card"><span class="card-tag">Pack 2 Reiki 1</span><h3>Limpieza Chakras</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Pack 2 Reiki 1', 10)">Agregar</button></div>
-            <div class="card"><span class="card-tag">Pack 3 Reiki 1</span><h3>21 Días Reiki</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Pack 3 Reiki 1', 10)">Agregar</button></div>
-            <div class="card"><span class="card-tag">Pack 4 Reiki 2</span><h3>Guía Gassho</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Pack 4 Reiki 2', 10)">Agregar</button></div>
-            <div class="card"><span class="card-tag">Pack 5 Reiki 2</span><h3>Limpieza Chakras</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Pack 5 Reiki 2', 10)">Agregar</button></div>
-            <div class="card"><span class="card-tag">Pack 6 Reiki 3</span><h3>21 Días Reiki</h3><span class="price-tag">10$</span><button class="btn-buy" onclick="addToCart('Pack 6 Reiki 3', 10)">Agregar</button></div>
+            <div class="card">
+                <span class="card-tag">Aromaterapia</span>
+                <h3>Aromaterapia- el poder curativo de los aromas</h3>
+                <p>Herramienta para medir la energía de los chakras y obtener respuestas del subconsciente.</p>
+                <span class="price-tag">12$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Herramienta - Aromaterapia', 12)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Musicoterapia</span>
+                <h3>El poder de la meditación y la musicoterapia</h3>
+                <p>Piedras naturales alineadas a cada centro energético para potenciar las sesiones.</p>
+                <span class="price-tag">20$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Herramienta - Musicoterapia', 20)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Meditación Consciente</span>
+                <h3>El arte de la meditación</h3>
+                <p>Piedras naturales alineadas a cada centro energético para potenciar las sesiones.</p>
+                <span class="price-tag">20$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Herramienta-Meditación Consciente', 20)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Respiración Consciente</span>
+                <h3>El poder de la respiración</h3>
+                <p>Piedras naturales alineadas a cada centro energético para potenciar las sesiones.</p>
+                <span class="price-tag">20$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Herramienta-Respiración Consciente', 20)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Energía, Vibración y Frecuencia</span>
+                <h3>El poder de tu vibración: Energía y frecuencia del universo</h3>
+                <p>Piedras naturales alineadas a cada centro energético para potenciar las sesiones.</p>
+                <span class="price-tag">20$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Herramienta - Energía, Vibración y Frecuencia', 20)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Radiestesia y Péndulo</span>
+                <h3>Guía practica de radiestesia, el dominio del  péndulo</h3>
+                <p>Piedras naturales alineadas a cada centro energético para potenciar las sesiones.</p>
+                <span class="price-tag">20$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Herramienta - Radiestesia y Péndulo', 20)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Varillas de Radiestesia</span>
+                <h3>Guía de iniciación a la radiestesia, el arte de las varillas</h3>
+                <p>Piedras naturales alineadas a cada centro energético para potenciar las sesiones.</p>
+                <span class="price-tag">20$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Herramienta - Varillas de Radiestesia', 20)">Agregar</button>
+            </div>
+                          
+          </div>
+    </section>
+
+  <section id="pack" style="background-color: #f0f4f2;">
+        <h2 class="section-title">Packs Especiales</h2>
+        <p class="section-subtitle">Formación y Ahorro</p>
+        <div class="product-grid">
+            <div class="card">
+                <span class="card-tag">Pack 1 Reiki 1</span>
+                <h3>Guía Gassho</h3>
+                <p>Historia de Mikao Usui y conceptos básicos de la energía vital para principiantes.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Pack 1 Reiki 1', 10)">Agregar</button>
+            </div>    
+            <div class="card">
+                <span class="card-tag">Pack 2 Reiki 1</span>
+                <h3>Limpieza Chakras</h3>
+                <p>Historia de Mikao Usui y conceptos básicos de la energía vital para principiantes.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Pack 2 Reiki 1', 10)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Pack 3 Reiki 1</span>
+                <h3>21 Días Reiki</h3>
+                <p>Historia de Mikao Usui y conceptos básicos de la energía vital para principiantes.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Pack 3 Reiki 1', 10)">Agregar</button>
+            </div> 
+            <div class="card">
+                <span class="card-tag">Pack 4 Reiki 2</span>
+                <h3>Guía Gassho</h3>
+                <p>Historia de Mikao Usui y conceptos básicos de la energía vital para principiantes.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Pack 4 Reiki 2', 10)">Agregar</button>
+            </div>
+             <div class="card">
+                <span class="card-tag">Pack 5 Reiki 2</span>
+                <h3>Limpieza Chakras</h3>
+                <p>Historia de Mikao Usui y conceptos básicos de la energía vital para principiantes.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Pack 5 Reiki 2', 10)">Agregar</button>
+            </div>
+                <div class="card">
+                <span class="card-tag">Pack 6 Reiki 3</span>
+                <h3>21 Días Reiki</h3>
+                <p>Historia de Mikao Usui y conceptos básicos de la energía vital para principiantes.</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Pack 6 Reiki 3', 10)">Agregar</button>
+           </div>
+           
         </div>
                           
      </section>
+  
+    <section id="Tutorias" style="background-color: #f0f4f2;" >
+        <h2 class="section-title">Acompañamiento Académico / Profesional</h2>
+        <p class="section-subtitle">Atención Personalizada</p> 
+        <h2>Ruth Mora</h2>
+        <h1>Maestra Usui Tibetano Tantrico</h1>
+        <h1>                             </h1>
+        <div class="product-grid">
+            <div class="card">
+                <span class="card-tag">Servicio Terapéutico</span>
+                <h3>Consulta Personalizada</h3>
+                <p>Historia de Mikao Usui y conceptos básicos de la energía vital para principiantes.</p>
+                <span class="price-tag">40$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Consulta Personalizada', 40)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Servicio Terapéutico</span>
+                <h3>Limpieza Espacios Físicos</h3>
+                <p>Estudio de los 7 centros energéticos principales y cómo influyen en la salud física.</p>
+                <span class="price-tag">70$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Limpieza Espacios Físicos', 70)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Servicio Terapéutico</span>
+                <h3>Paquete Terapéutico</h3>
+                <p>Guía paso a paso para canalizar energía hacia uno mismo para sanación diaria.</p>
+                <span class="price-tag">130$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Paquete Terapéutico', 130)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Servicio Orientación</span>
+                <h3>Consulta por separado</h3>
+                <p>Socioeducativa, Vocacional, Profesional, Ocupacional    </p>
+                <span class="price-tag">20$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Servicio Orientación', 20)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Academia Terapéutica "GAIA"</span>
+                <h3>12 Hrs Nivel Básico</h3>
+                <p>Explicación personalizada por Ruth Mora, 4 encuentros al mes, Duración: 3 hrs cada uno     </p>
+                <span class="price-tag">170$</span>
+                <button class="btn-buy" onclick="addToCart(this, '12 Hrs Básico', 170)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Academia Terapéutica "GAIA"</span>
+                <h3>12 Hrs Nivel Intermedio</h3>
+                <p>Explicación personalizada por Ruth Mora,    4 encuentros al mes, Duración:    3 hrs cada uno     </p>
+                <span class="price-tag">200$</span>
+                <button class="btn-buy" onclick="addToCart(this, '12 Hrs Intermedio', 200)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Academia Terapéutica "GAIA"</span>
+                <h3>12 Hrs Nivel Avanzado</h3>
+                <p>Explicación personalizada por Ruth Mora,    4 encuentros al mes, Duración:    3 hrs cada uno     </p>
+                <span class="price-tag">330$</span>
+                <button class="btn-buy" onclick="addToCart(this, '12 Hrs Avanzado', 330)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Academia Terapéutica "GAIA"</span>
+                <h3>36 Hrs Nivel Experto</h3>
+                <p>Explicación personalizada por Ruth Mora,    4 encuentros al mes, Duración:    3 hrs cada uno     </p>
+                <span class="price-tag">500$</span>
+                <button class="btn-buy" onclick="addToCart(this, '36 Hrs Experto', 500)">Agregar</button>
+            </div>
+
+        </div>
+    </section>
+
+ <section id="SocioCreativa">
+        <h2 class="section-title">SocioCreativa</h2>
+        <p class="section-subtitle">Escuela</p>
+        <div class="product-grid">
+            <div class="card">
+                <span class="card-tag">Estudiantes</span>
+                <h3>4 Hrs académicas</h3>
+                <p>Cupos 20 personas </p>
+                <span class="price-tag">5$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Estudiantes', 4)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Docentes</span>
+                <h3>4 Hrs académicas</h3>
+                <p>Cupos 20 personas</p>
+                <span class="price-tag">5$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Docentes', 5)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Directores, Administrativos</span>
+                <h3>4 Hrs académicas</h3>
+                <p>Cupos 20 personas</p>
+                <span class="price-tag">40$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Directores, Administrativos', 40)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Asesoría Educativa</span>
+                <h3>8 Hrs académicas</h3>
+                <p>Cupos 1 persona</p>
+                <span class="price-tag">200$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Asesoría Educativa', 200)">Agregar</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="Integral Woman">
+        <h2 class="section-title">Integral Woman</h2>
+        <p class="section-subtitle">Escuela</p>
+        <div class="product-grid">
+            <div class="card">
+                <span class="card-tag">Inscripción</span>
+                <h3>Actividades Integral Woman</h3>
+                <p>Cupos 20 personas </p>
+                <span class="price-tag">5$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Inscripción Integral Woman', 5)">Agregar</button>
+            </div>
+            <div class="card">
+                <span class="card-tag">Mujeres</span>
+                <h3>Cada 4 Hrs académicas</h3>
+                <p>Cupos 20 personas</p>
+                <span class="price-tag">10$</span>
+                <button class="btn-buy" onclick="addToCart(this, 'Mujeres', 10)">Agregar</button>
+            </div>
+         </div>
+    </section>
 
     <div id="cart-container">
-        <div class="cart-header"><span>Mi Pedido Holístico</span><button onclick="toggleCart()" style="color:white; background:none; border:none; cursor:pointer;">✕</button></div>
-        
+        <div class="cart-header"><span>Mi Pedido - CIDEPHU</span><button onclick="toggleCart()" style="color:white; background:none; border:none; cursor:pointer;">✕</button></div>
         <div class="cart-form">
             <input type="text" id="c-name" placeholder="Nombre y Apellido">
-            <input type="text" id="c-id" placeholder="Cédula Identidad">
-            <input type="tel" id="c-whatsapp" placeholder="Nro WhatsApp">
-            <input type="text" id="c-vendor" placeholder="Nombre del Vendedor">
+            <input type="text" id="c-id" placeholder="Cédula">
+            <input type="tel" id="c-wa" placeholder="WhatsApp">
+            <input type="text" id="c-ven" placeholder="Vendedor">
         </div>
-
         <ul id="cart-items"></ul>
         <div class="cart-total">Total: <span id="total-val">0</span>$</div>
         <button class="btn-whatsapp" onclick="processOrder()">Generar Recibo y WhatsApp</button>
     </div>
 
-    <footer><p>&copy; 2026 CIDEPHU Centro de Sanación. El poder de la energía en tus manos.</p></footer>
+    <footer><p>&copy; 2026 CIDEPHU | Sabiduría y Luz para tu Alma.</p></footer>
 
     <script>
         let cart = [];
-const waLink = "https://chat.whatsapp.com/Ip0PuB9WkDkAbXPHFukCps";
+        const waLink = "https://chat.whatsapp.com/Ip0PuB9WkDkAbXPHFukCps";
 
-// Nueva lógica para agregar o incrementar cantidad
-function addToCart(name, price) {
-    const existingItem = cart.find(item => item.name === name);
-    
-    if (existingItem) {
-        existingItem.qty += 1;
-    } else {
-        cart.push({ name, price, qty: 1 });
-    }
-    
-    updateUI();
-    document.getElementById('cart-container').style.display = 'block';
-}
+        function addToCart(btn, name, price) {
+            const originalText = btn.innerText;
+            btn.innerText = "✔";
+            btn.classList.add('added');
+            setTimeout(() => { btn.innerText = originalText; btn.classList.remove('added'); }, 1000);
 
-function updateUI() {
-    const list = document.getElementById('cart-items');
-    const totalEl = document.getElementById('total-val');
-    list.innerHTML = '';
-    let total = 0;
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) { existingItem.qty += 1; } 
+            else { cart.push({ name, price, qty: 1 }); }
+            updateUI();
+            document.getElementById('cart-container').style.display = 'block';
+        }
 
-    cart.forEach((item, index) => {
-        const subtotal = item.price * item.qty;
-        total += subtotal;
-        
-        list.innerHTML += `
-            <li class="cart-item">
-                <div class="item-info">
-                    <span>${item.name}</span>
-                    <span class="item-price-detail">${item.qty} x ${item.price}$ = ${subtotal}$</span>
-                </div>
-                <div class="qty-controls">
-                    <button class="btn-qty" onclick="changeQty(${index}, -1)">-</button>
-                    <span>${item.qty}</span>
-                    <button class="btn-qty" onclick="changeQty(${index}, 1)">+</button>
-                    <button onclick="remove(${index})" style="border:none; background:none; cursor:pointer; color:#ff6b6b; margin-left:5px;">✕</button>
-                </div>
-            </li>`;
-    });
-    totalEl.innerText = total;
-}
+        function updateUI() {
+            const list = document.getElementById('cart-items');
+            const totalEl = document.getElementById('total-val');
+            const badge = document.getElementById('cart-badge');
+            list.innerHTML = '';
+            let total = 0; let totalQty = 0;
 
-// Función para ajustar cantidades
-function changeQty(index, delta) {
-    cart[index].qty += delta;
-    if (cart[index].qty <= 0) {
-        cart.splice(index, 1);
-    }
-    if (cart.length === 0) document.getElementById('cart-container').style.display = 'none';
-    updateUI();
-}
+            cart.forEach((item, index) => {
+                const sub = item.price * item.qty;
+                total += sub; totalQty += item.qty;
+                list.innerHTML += `<li class="cart-item">
+                    <div><b>${item.name}</b><br><small>${item.qty} x ${item.price}$</small></div>
+                    <div class="qty-controls">
+                        <button class="btn-qty" onclick="changeQty(${index}, -1)">-</button>
+                        <span>${item.qty}</span>
+                        <button class="btn-qty" onclick="changeQty(${index}, 1)">+</button>
+                        <button onclick="remove(${index})" style="border:none; background:none; cursor:pointer; color:#ff6b6b; margin-left:5px;">✕</button>
+                    </div>
+                </li>`;
+            });
+            totalEl.innerText = total;
+            badge.innerText = totalQty;
+        }
 
-function remove(idx) {
-    cart.splice(idx, 1);
-    if(cart.length === 0) document.getElementById('cart-container').style.display = 'none';
-    updateUI();
-}
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) cart.splice(index, 1);
+            if (cart.length === 0) document.getElementById('cart-container').style.display = 'none';
+            updateUI();
+        }
 
-function toggleCart() {
-    const c = document.getElementById('cart-container');
-    c.style.display = c.style.display === 'none' ? 'block' : 'none';
-}
+        function remove(idx) {
+            cart.splice(idx, 1);
+            if(cart.length === 0) document.getElementById('cart-container').style.display = 'none';
+            updateUI();
+        }
 
-async function processOrder() {
-    const name = document.getElementById('c-name').value;
-    const id = document.getElementById('c-id').value;
-    const wa = document.getElementById('c-whatsapp').value;
-    const ven = document.getElementById('c-vendor').value;
+        function toggleCart() {
+            const c = document.getElementById('cart-container');
+            c.style.display = (c.style.display === 'none' || c.style.display === '') ? 'block' : 'none';
+        }
 
-    if(!name || !id || !wa || !ven || cart.length === 0) {
-        alert("Por favor completa tus datos y añade productos al carrito.");
-        return;
-    }
+        async function processOrder() {
+            const n = document.getElementById('c-name').value;
+            const i = document.getElementById('c-id').value;
+            const w = document.getElementById('c-wa').value;
+            const v = document.getElementById('c-ven').value;
 
-    let total = 0;
-    let recibo = `✨ *COTIZACIÓN - CIDEPHU* ✨\n\n`;
-    recibo += `👤 *Cliente:* ${name}\n`;
-    recibo += `🆔 *Cédula:* ${id}\n`;
-    recibo += `📱 *WhatsApp:* ${wa}\n`;
-    recibo += `👤 *Vendedor(a):* ${ven}\n`;
-    recibo += `--------------------------------\n`;
-    recibo += `📦 *DETALLE DEL PEDIDO:*\n`;
-    
-    cart.forEach(i => {
-        const sub = i.price * i.qty;
-        recibo += `• ${i.name} (${i.qty} x $${i.price}) = $${sub}\n`;
-        total += sub;
-    });
+            if(!n || !i || !w || !v || cart.length === 0) return alert("Completa tus datos.");
 
-    recibo += `--------------------------------\n`;
-    recibo += `💰 *TOTAL A PAGAR: ${total}$*\n\n`;
-    recibo += `🙏 _Gracias por elegir a Cidephu._`;
+            let total = 0;
+            let recibo = `✨ *COTIZACIÓN - CIDEPHU* ✨\n\n👤 *Cliente:* ${n}\n🆔 *ID:* ${i}\n👤 *Vendedor:* ${v}\n--------------------------------\n`;
+            cart.forEach(item => {
+                const sub = item.price * item.qty;
+                recibo += `• ${item.name} (${item.qty}x$${item.price}) = $${sub}\n`;
+                total += sub;
+            });
+            recibo += `--------------------------------\n💰 *TOTAL: ${total}$*`;
 
-    try {
-        await navigator.clipboard.writeText(recibo);
-        alert("¡Recibo actualizado y copiado! Redirigiendo al grupo...");
-        window.open(waLink, '_blank');
-    } catch (e) {
-        alert("Error al copiar el recibo.");
-    }
-}
+            await navigator.clipboard.writeText(recibo);
+            alert("¡Recibo copiado! Pégalo en el WhatsApp.");
+            window.open(waLink, '_blank');
+        }
     </script>
 </body>
 </html>
