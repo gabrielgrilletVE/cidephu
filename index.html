@@ -583,7 +583,7 @@
             if(!n || !i || !w || !v || cart.length === 0) return alert("Completa tus datos.");
 
             let total = 0;
-            let recibo = `✨ *COTIZACIÓN - CIDEPHU* ✨\n\n👤 *Cliente:* ${n}\n🆔 *ID:* ${i}\n👤 *Vendedor:* ${v}\n--------------------------------\n`;
+            let recibo = `✨ *COTIZACIÓN - CIDEPHU* ✨\n\n👤 *Cliente:* ${n}\n🆔 *ID:* ${i}\ \n🆔 *Whatsapp:* ${w}\n👤 *Vendedor:* ${v}\n--------------------------------\n`;
             recibo += `📦 *DETALLE DEL PEDIDO:*\n`;
             cart.forEach(item => {
                 const sub = item.price * item.qty;
